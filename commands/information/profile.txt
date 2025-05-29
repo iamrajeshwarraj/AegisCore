@@ -1,0 +1,90 @@
+const { MessageEmbed } = require('discord.js')
+
+module.exports = {
+    name: 'profile',
+    aliases: ['badge', 'badges', 'achievement', 'pr'],
+    category: 'info',
+    premium: false,
+    run: async (client, message, args) => {
+        const user =
+            message.mentions.users.first() ||
+            client.users.cache.get(args[0]) ||
+            message.author
+
+        const stefan = user.id === '1296592612114960415' ? true : false
+        let badges = ''
+
+        const guild = await client.guilds.fetch('1229769941792722984')
+
+        const sus = await guild.members.fetch(user.id).catch((e) => {
+            if (user) badges = badges
+            else badges = '`No Badge Available`'
+        })
+
+        if (stefan === true || user.id === '1296592612114960415')
+            badges =
+                badges +
+                `\n<a:cool_pikachu:1303632631253958707>・**[Aster](https://discord.com/users/1296592612114960415)**`
+
+        try {
+            const dev = sus.roles.cache.has('1222960664725688520')
+            if (dev === true)
+                badges =
+                    badges +
+                    `\n<:VerifiedBotDeveloper:1223266297383751814>・**Developer**`
+
+            const own = sus.roles.cache.has('1222960699886797003')
+            if (own === true)
+                badges = badges + `\n<a:owner:1208424663127035966>・**Owner**`
+
+            const han = sus.roles.cache.has('1222960840722878578')
+            if (han === true)
+                badges = badges + `\n<:admin:1208375103327445023>・**Admin**`
+
+            const manager = sus.roles.cache.has('1222960861271031891')
+            if (manager === true)
+                badges = badges + `\n<:moderator:1208375144553386025>・**Mod**`
+
+            const aman = sus.roles.cache.has('1181521604862279730')
+            if (aman === true)
+                badges =
+                    badges + `\n<a:team:1208424921491832863>・**Support Team**`
+
+            const hundi = sus.roles.cache.has('1222960883391660144')
+            if (hundi === true)
+                badges =
+                    badges +
+                    `\n<:bughunter2:1223265167089991802>・**Bug Hunter**`
+
+            const supp = sus.roles.cache.has('1222960944783691806')
+            if (supp === true)
+                badges =
+                    badges +
+                    `\n<:earlysupporter:1223265622415118337>・**Supporter**`
+
+            const fr = sus.roles.cache.has('1222960758875357286')
+            if (fr === true)
+                badges =
+                    badges + `\n<:Friendship:1208375492793860096>・**Friends**`
+        } catch (err) {
+            if (badges) {
+                badges = ''
+                badges = badges
+            } else if (badges === '') badges = '`No Badge Available`'
+        }
+
+        const pr = new MessageEmbed()
+            .setAuthor(
+                `Profile For ${user.username}#${user.discriminator}`,
+                client.user.displayAvatarURL({ dynamic: true })
+            )
+            .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+            //.setTitle(`${user.username}'s Profile`)
+            .setColor(client.color)
+            .setTimestamp()
+            .setDescription(`**BADGES** <a:Boobst:1223299317796704356>
+  ${badges ? badges : '`No Badge Available`'}`)
+        //.setTimestamp();
+        message.channel.send({ embeds: [pr] })
+    }
+}

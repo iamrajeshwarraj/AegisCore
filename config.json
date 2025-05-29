@@ -1,0 +1,13 @@
+{
+    "TOKEN": "MTMwNzQwMzM3ODA1NzQxNjgxMg.GxwxAK.FRWFFjVkfdtxUYpRVBeO84MWObAK0cbFQ6t2KU",
+    "MONGO_DB": "mongodb+srv://rajeshwarrajbly20:randidadhabha@cluster0.cbs91jy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "cooldown": true,
+    "owner": [
+        "1296592612114960415" , "1297443880576225312"],
+    "admin": [
+        "1296592612114960415" , "1297443880576225312"],
+    "np": [
+        "1296592612114960415" , "1297443880576225312"],
+
+    "invite": ""
+}
